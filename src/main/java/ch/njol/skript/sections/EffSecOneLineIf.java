@@ -1,22 +1,22 @@
 package ch.njol.skript.sections;
 
 import ch.njol.skript.Skript;
-import ch.njol.skript.command.CommandEvent;
-import ch.njol.skript.command.EffectCommandEvent;
+//import ch.njol.skript.command.CommandEvent;
+//import ch.njol.skript.command.EffectCommandEvent;
 import ch.njol.skript.config.SectionNode;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.*;
-import ch.njol.skript.lang.parser.ParserInstance;
+//import ch.njol.skript.lang.parser.ParserInstance;
 import ch.njol.util.Kleenean;
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
+//import org.bukkit.Bukkit;
+//import org.bukkit.command.CommandSender;
 import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 @Name("One line")
