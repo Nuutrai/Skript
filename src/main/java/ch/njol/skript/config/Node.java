@@ -171,12 +171,17 @@ public abstract class Node {
 					continue;
 				}
 				SplitLineState tmp = state;
-				state = SplitLineState.update(c, state, previousState);
+				String extra = "";
+				if (c == '$') {
+					extra = "{";
+				}
+				state = SplitLineState.update(c + extra, state, previousState);
 				if (state == SplitLineState.HALT)
 					return new NonNullPair<>(finalLine.substring(0, i - numRemoved), line.substring(i));
 				// only update previous state when we go from !CODE -> CODE due to %
 				if (c == '%' && state == SplitLineState.CODE)
 					previousState = tmp;
+				if (!extra.isBlank()) { i++; }
 			}
 		}
 		return new NonNullPair<>(finalLine.toString(), "");
@@ -199,14 +204,16 @@ public abstract class Node {
 
 		/**
 		 * Updates the state given a character input.
-		 * @param c character input. '"', '%', '{', '}', and '#' are valid.
+		 * @param string string output (made to add the $, doesn't change anything otherwise) -> character input. '"', '%', '{', '}', and '#' are valid.
 		 * @param state the current state of the machine
 		 * @param previousState the state of the machine when it last entered a % CODE % section
 		 * @return the new state of the machine
 		 */
-		private static SplitLineState update(char c, SplitLineState state, SplitLineState previousState) {
+		private static SplitLineState update(String string, SplitLineState state, SplitLineState previousState) {
 			if (state == HALT)
 				return HALT;
+
+			char c = string.charAt(0);
 
 			switch (c) {
 				case '%':
@@ -222,10 +229,14 @@ public abstract class Node {
 						default:
 							return state;
 					}
-				case '{':
-					if (state == STRING)
-						return STRING;
-					return VARIABLE;
+				case '$':
+					char cb = string.charAt(1);
+					if (cb == '{') {
+						if (state == STRING)
+							return STRING;
+						return VARIABLE;
+					}
+					return state;
 				case '}':
 					if (state == STRING)
 						return STRING;
@@ -320,7 +331,7 @@ public abstract class Node {
 					continue;
 				}
 				SplitLineState tmp = state;
-				state = SplitLineState.update(c, state, previousState);
+				state = SplitLineState.update(c + "", state, previousState);
 				previousState = tmp;
 			}
 		}

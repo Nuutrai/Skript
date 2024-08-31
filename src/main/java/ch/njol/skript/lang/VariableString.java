@@ -193,7 +193,7 @@ public class VariableString implements Expression<String> {
 
 				int variableEnd = exprStart;
 				int variableStart;
-				while (exprEnd != -1 && (variableStart = original.indexOf('{', variableEnd + 1)) != -1 && variableStart < exprEnd) {
+				while (exprEnd != -1 && (variableStart = original.indexOf("${", variableEnd + 1)) != -1 && variableStart < exprEnd) {
 					variableEnd = nextVariableBracket(original, variableStart + 1);
 					if (variableEnd == -1) {
 						Skript.error("Missing closing bracket '}' to end variable");
@@ -340,8 +340,10 @@ public class VariableString implements Expression<String> {
 				if (variableDepth == 0)
 					return index;
 				variableDepth--;
-			} else if (string.charAt(index) == '{') {
-				variableDepth++;
+			} else if (string.charAt(index) == '$') {
+				if (string.charAt(index + 1) == '{') {
+					variableDepth++;
+				}
 			}
 		}
 		return -1;

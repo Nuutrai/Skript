@@ -296,15 +296,20 @@ public class SkriptParser {
 	@Nullable
 	private static <T> Variable<T> parseVariable(String expr, Class<? extends T>[] returnTypes) {
 		if (VARIABLE_PATTERN.matcher(expr).matches()) {
-			String variableName = "" + expr.substring(expr.indexOf('{') + 1, expr.lastIndexOf('}'));
+			String variableName = "" + expr.substring(expr.indexOf("${") + 1, expr.lastIndexOf('}'));
 			boolean inExpression = false;
 			int variableDepth = 0;
-			for (char character : variableName.toCharArray()) {
+			for (int i = 0; i < variableName.toCharArray().length; i++) {
+
+				char character = variableName.toCharArray()[i];
+
 				if (character == '%' && variableDepth == 0)
 					inExpression = !inExpression;
 				if (inExpression) {
-					if (character == '{') {
-						variableDepth++;
+					if (character == '$') {
+						if (variableName.toCharArray()[i+1] == '{') {
+							variableDepth++;
+						}
 					} else if (character == '}')
 						variableDepth--;
 				}

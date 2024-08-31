@@ -206,7 +206,7 @@ public class AliasesParser {
 		String trimmed = item.trim();
 		assert trimmed != null;
 		item = trimmed; // These could mess up following check among other things
-		int firstBracket = item.indexOf('{');
+		int firstBracket = item.indexOf("${");
 		
 		String id; // Id or alias
 		Map<String, Object> tags;
@@ -454,11 +454,14 @@ public class AliasesParser {
 		// Compute variation slots
 		for (int i = 0; i < name.length();) {
 			int c = name.codePointAt(i);
-			if (c == '{') { // Found variation name start
-				varStart = i;
-				String part = name.substring(varEnd, i);
-				assert part != null;
-				slots.add(new PatternSlot(part));
+			if (c == '$') { // Found variation name start
+				if (c + 1 == '{') {
+					varStart = i;
+					String part = name.substring(varEnd, i);
+					assert part != null;
+					slots.add(new PatternSlot(part));
+					i++;
+				}
 			} else if (c == '}') { // Found variation name end
 				if (varStart == -1) { // Or just invalid syntax
 					Skript.error(m_not_enough_brackets.toString());
