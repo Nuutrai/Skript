@@ -288,7 +288,7 @@ public class SkriptParser {
 		return expr;
 	}
 
-	private static final Pattern VARIABLE_PATTERN = Pattern.compile("((the )?var(iable)? )?\\{.+\\}", Pattern.CASE_INSENSITIVE);
+	private static final Pattern VARIABLE_PATTERN = Pattern.compile("((the )?var(iable)? )?\\$\\{.+\\}", Pattern.CASE_INSENSITIVE);
 
 	/**
 	 * Prints errors
