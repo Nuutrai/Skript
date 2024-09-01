@@ -38,8 +38,8 @@ public class EffMakeFlyTest extends SkriptJUnitTest {
 	@Before
 	public void setup() {
 		testPlayer = EasyMock.niceMock(Player.class);
-		startFlyingEffect = Effect.parse("make {_player} start flying", null);
-		stopFlyingEffect = Effect.parse("make {_player} stop flying", null);
+		startFlyingEffect = Effect.parse("make ${_player} start flying", null);
+		stopFlyingEffect = Effect.parse("make ${_player} stop flying", null);
 	}
 
 	@Test

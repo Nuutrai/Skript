@@ -41,7 +41,7 @@ public class ExprPlainAliasTest extends SkriptJUnitTest {
 	@Before
 	public void setup() {
 		itemType = EasyMock.niceMock(ItemType.class);
-		getPlainRandomItemEffect = Effect.parse("set {_a} to plain {_item}", null);
+		getPlainRandomItemEffect = Effect.parse("set ${_a} to plain ${_item}", null);
 	}
 
 	@Test

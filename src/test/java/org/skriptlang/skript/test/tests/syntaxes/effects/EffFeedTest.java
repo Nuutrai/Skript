@@ -41,8 +41,8 @@ public class EffFeedTest extends SkriptJUnitTest {
 	@Before
 	public void setup() {
 		easyMockPlayer = EasyMock.niceMock(Player.class);
-		feedFullyEffect = Effect.parse("feed {_player}", null);
-		feedPartiallyEffect = Effect.parse("feed {_player} by {_amount} beef", null);
+		feedFullyEffect = Effect.parse("feed ${_player}", null);
+		feedPartiallyEffect = Effect.parse("feed ${_player} by ${_amount} beef", null);
 	}
 
 	@Test

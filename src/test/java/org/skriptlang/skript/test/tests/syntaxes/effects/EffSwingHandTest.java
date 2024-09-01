@@ -42,8 +42,8 @@ public class EffSwingHandTest extends SkriptJUnitTest {
 	@Before
 	public void setup() {
 		testEntity = EasyMock.niceMock(LivingEntity.class);
-		swingMainHandEffect = Effect.parse("make {_entity} swing their main hand", null);
-		swingOffhandEffect = Effect.parse("make {_entity} swing their offhand", null);
+		swingMainHandEffect = Effect.parse("make ${_entity} swing their main hand", null);
+		swingOffhandEffect = Effect.parse("make ${_entity} swing their offhand", null);
 	}
 
 	@Test

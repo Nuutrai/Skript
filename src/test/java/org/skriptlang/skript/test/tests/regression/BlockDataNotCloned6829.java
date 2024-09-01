@@ -42,8 +42,8 @@ public class BlockDataNotCloned6829 extends SkriptJUnitTest {
 	@Test
 	public void test() {
 		Event event = ContextlessEvent.get();
-		run("set {_original tripwire} to tripwire[]", event);
-		run("set {_another tripwire} to {_original tripwire}", event);
+		run("set ${_original tripwire} to tripwire[]", event);
+		run("set ${_another tripwire} to ${_original tripwire}", event);
 		Tripwire originalTripwire = (Tripwire) Objects.requireNonNull(Variables.getVariable("original tripwire", event, true));
 		Tripwire anotherTripwire = (Tripwire) Objects.requireNonNull(Variables.getVariable("another tripwire", event, true));
 		anotherTripwire.setDisarmed(true);

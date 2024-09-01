@@ -45,8 +45,8 @@ public class EffApplyBoneMealTest {
 	@Before
 	public void setup() {
 		stubTestBlock = EasyMock.niceMock(Block.class);
-		applyBonemealEffect = Effect.parse("apply bonemeal to {_block}", null);
-		applyMultipleBonemealEffect = Effect.parse("apply {_times} bonemeal to {_block}", null);
+		applyBonemealEffect = Effect.parse("apply bonemeal to ${_block}", null);
+		applyMultipleBonemealEffect = Effect.parse("apply ${_times} bonemeal to ${_block}", null);
 	}
 
 	@Test

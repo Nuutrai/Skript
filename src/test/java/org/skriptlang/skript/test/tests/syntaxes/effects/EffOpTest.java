@@ -38,8 +38,8 @@ public class EffOpTest extends SkriptJUnitTest {
 	@Before
 	public void setup() {
 		testPlayer = EasyMock.niceMock(Player.class);
-		opPlayerEffect = Effect.parse("op {_player}", null);
-		deopPlayerEffect = Effect.parse("deop {_player}", null);
+		opPlayerEffect = Effect.parse("op ${_player}", null);
+		deopPlayerEffect = Effect.parse("deop ${_player}", null);
 	}
 
 	@Test

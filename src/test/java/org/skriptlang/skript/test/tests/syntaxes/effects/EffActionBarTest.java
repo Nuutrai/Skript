@@ -46,7 +46,7 @@ public class EffActionBarTest extends SkriptJUnitTest {
 	public void setup() {
 		testPlayer = EasyMock.niceMock(Player.class);
 		testSpigotPlayer = EasyMock.niceMock(Player.Spigot.class);
-		actionBarEffect = Effect.parse("send actionbar {_content} to {_player}", null);
+		actionBarEffect = Effect.parse("send actionbar ${_content} to ${_player}", null);
 	}
 
 	@Test
